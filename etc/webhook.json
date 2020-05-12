@@ -1,7 +1,8 @@
 [
     {
         "id": "ee-set-env",
-        "execute-command": "/opt/ee-mgmt/bin/webhook-ee-set-env.sh",
+        "execute-command": "/opt/elexis-environment-demo-mgmt/bin/webhook-ee-set-env.sh",
+        "command-working-directory": "/opt/elexis-environment-demo-mgmt/bin",
         "pass-arguments-to-command": [
             {
                 "source": "payload",
@@ -11,7 +12,8 @@
     },
     {
         "id": "form",
-        "execute-command": "/opt/ee-mgmt/bin/webhook-form.sh",
+        "execute-command": "/opt/elexis-environment-demo-mgmt/bin/webhook-form.sh",
+        "command-working-directory": "/opt/elexis-environment-demo-mgmt/bin",
         "include-command-output-in-response": true
     }
 ]

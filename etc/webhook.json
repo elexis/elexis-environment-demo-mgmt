@@ -1,0 +1,17 @@
+[
+    {
+        "id": "ee-set-env",
+        "execute-command": "/opt/ee-mgmt/bin/webhook-ee-set-env.sh",
+        "pass-arguments-to-command": [
+            {
+                "source": "payload",
+                "name": "hostname"
+            }
+        ]
+    },
+    {
+        "id": "form",
+        "execute-command": "/opt/ee-mgmt/bin/webhook-form.sh",
+        "include-command-output-in-response": true
+    }
+]

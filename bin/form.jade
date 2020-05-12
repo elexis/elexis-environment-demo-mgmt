@@ -1,0 +1,31 @@
+doctype html
+html(lang="de")
+  head
+    title Elexis Environment Management
+  body
+    h1 Elexis Environment Management
+
+    script.
+      document.write('<h2><a href="' + window.location.protocol + '//' + window.location.hostname + ':6688' + '" target="_blank" >Follow Log output</a></h2>' );
+
+    h2 Configuration
+    form(name="hostname", action="/ee-set-env", method='post')
+     p Hostname 
+        input(type="text", name='hostname', value="#{EE_HOSTNAME}")
+     p Organisation
+        input(type='text', name='organisationname', value='#{ORGANISATION_NAME}')
+     p Organisation Domain
+        input(type='text', name='organisationdomain', value='#{ORGANSATION_DOMAIN}')
+     p Organisation Base Dn
+        input(type='text', name='organisationbasedn', value='#{ORGANISATION_BASE_DN}')
+     p Admin Email
+        input(type='text', name='adminemail', value='#{ADMIN_EMAIL}')
+    input(type='submit', value='Update configuration')
+ 
+    h2 Actions
+    form(name="start", action="/ee-start", method='get')
+     input(type='submit', value='Startup')
+    form(name="stop", action="/ee-stop", method='get')
+     input(type="submit", value="Shutdown")
+    form(name="reset", action="/ee-reset", method='get')
+     input(type="submit", value="!!! Full Reset !!!")

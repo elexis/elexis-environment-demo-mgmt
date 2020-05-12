@@ -3,12 +3,30 @@
         "id": "ee-set-env",
         "execute-command": "/opt/elexis-environment-demo-mgmt/bin/webhook-ee-set-env.sh",
         "command-working-directory": "/opt/elexis-environment-demo-mgmt/bin",
+        "include-command-output-in-response": true,
         "pass-arguments-to-command": [
             {
-                "source": "payload",
-                "name": "hostname"
+                "source": "entire-payload"
             }
         ]
+    },
+    {
+        "id": "ee-stop",
+        "execute-command": "/opt/elexis-environment-demo-mgmt/bin/webhook-ee-stop.sh",
+        "command-working-directory": "/opt/elexis-environment-demo-mgmt/bin",
+        "include-command-output-in-response": true
+    },
+    {
+        "id": "ee-start",
+        "execute-command": "/opt/elexis-environment-demo-mgmt/bin/webhook-ee-start.sh",
+        "command-working-directory": "/opt/elexis-environment-demo-mgmt/bin",
+        "include-command-output-in-response": true
+    },
+    {
+        "id": "ee-full-reset",
+        "execute-command": "/opt/elexis-environment-demo-mgmt/bin/webhook-ee-full-reset.sh",
+        "command-working-directory": "/opt/elexis-environment-demo-mgmt/bin",
+        "include-command-output-in-response": true
     },
     {
         "id": "form",

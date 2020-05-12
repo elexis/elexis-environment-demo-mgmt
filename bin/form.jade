@@ -11,7 +11,7 @@ html(lang="de")
       document.write('<h2><a href="' + window.location.protocol + '//' + window.location.hostname + ':6688' + '" target="_blank" >Follow Log output</a></h2>' );
 
     h2 Configuration
-    form(name="hostname", action="/hooks/ee-set-env", method='post')
+    form(name="hostname", action="/hooks/ee-set-env", method='post', autocomplete='off')
      p Hostname 
         input(type="text", name='hostname', value="#{EE_HOSTNAME}")
      p Organisation

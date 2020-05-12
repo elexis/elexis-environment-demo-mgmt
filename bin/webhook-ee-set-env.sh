@@ -1,29 +1,21 @@
 #!/bin/bash
 # Incoming  {"adminemail":"ask-user","hostname":"base.demo.myelexis.ch","organisationbasedn":"ask-user","organisationdomain":"ask-user","organisationname":"ask-user"}
 
-for val in $@;
-do
-    KEY=$(echo $val | cut -d ':' -f1 -)
-    VALUE=$(echo $val | cut -d ':' -f2 -)
-    
-    if [ $KEY = "adminemail" ]; then
-        sed -i "s/ADMIN_EMAIL=.*/ADMIN_EMAIL=$VALUE/g" /opt/ee/elexis-environment/.env
-    fi
+DOCKER_ENV=/opt/ee/elexis-environment/.env
 
-    if [ $KEY = "hostname" ]; then
-        sed -i "s/EE_HOSTNAME=.*/EE_HOSTNAME=$VALUE/g" /opt/ee/elexis-environment/.env
-    fi
+adminemail=$(echo $@ | jq -r '.adminemail')
+sed -i "s/ADMIN_EMAIL=.*/ADMIN_EMAIL=$adminemail/g" $DOCKER_ENV
 
-    if [ $KEY = "organisationbasedn" ]; then
-        sed -i "s/ORGANISATION_BASE_DN=.*/ORGANISATION_BASE_DN=$VALUE/g" /opt/ee/elexis-environment/.env
-    fi
+hostname=$(echo $@ | jq -r '.hostname')
+sed -i "s/EE_HOSTNAME=.*/EE_HOSTNAME=$hostname/g" $DOCKER_ENV
 
-    if [ $KEY = "organisationdomain" ]; then
-        sed -i "s/ORGANSATION_DOMAIN=.*/ORGANSATION_DOMAIN=$VALUE/g" /opt/ee/elexis-environment/.env
-    fi
+organisationbasedn=$(echo $@ | jq -r '.organisationbasedn')
+sed -i "s/ORGANISATION_BASE_DN=.*/ORGANISATION_BASE_DN=$organisationbasedn/g" $DOCKER_ENV
 
-    if [ $KEY = "organisationname" ]; then
-        sed -i "s/ORGANISATION_NAME=.*/ORGANISATION_NAME=$VALUE/g" /opt/ee/elexis-environment/.env
-    fi
+organisationdomain=$(echo $@ | jq -r '.organisationdomain')
+sed -i "s/ORGANSATION_DOMAIN=.*/ORGANSATION_DOMAIN=$organisationdomain/g" $DOCKER_ENV
 
-done
+organisationname=$(echo $@ | jq -r '.organisationname')
+sed -i "s/ORGANISATION_NAME=.*/ORGANISATION_NAME=$organisationname/g" $DOCKER_ENV
+
+echo "<HTML>Values set. Please reload form.<HTML>"

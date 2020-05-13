@@ -11,6 +11,12 @@
         ]
     },
     {
+        "id": "ee-setup-configure",
+        "execute-command": "/opt/elexis-environment-demo-mgmt/bin/webhook-ee-setup-configure.sh",
+        "command-working-directory": "/opt/elexis-environment-demo-mgmt/bin",
+        "include-command-output-in-response": true
+    },
+    {
         "id": "ee-stop",
         "execute-command": "/opt/elexis-environment-demo-mgmt/bin/webhook-ee-stop.sh",
         "command-working-directory": "/opt/elexis-environment-demo-mgmt/bin",

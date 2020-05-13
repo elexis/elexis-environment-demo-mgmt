@@ -10,6 +10,16 @@ html(lang="de")
     script.
       document.write('<h2><a href="' + window.location.protocol + '//' + window.location.hostname + ':6688' + '" target="_blank" >Follow Log output</a></h2>' );
 
+    h2 Actions
+    form(name="setup", action="/hooks/ee-setup-configure", method='get')
+     input(type='submit', value='Configure EE (ee setup configure)')
+    form(name="start", action="/hooks/ee-start", method='get')
+     input(type='submit', value='Startup EE (ee system cmd up -d --build)')
+    form(name="stop", action="/hooks/ee-stop", method='get')
+     input(type="submit", value="Shutdown EE (ee system cmd stop)")
+    form(name="reset", action="/hooks/ee-full-reset", method='get')
+     input(type="submit", value="!!! Full Reset EE !!!")
+     
     h2 Configuration
     form(name="hostname", action="/hooks/ee-set-env", method='post', autocomplete='off')
      p Hostname 
@@ -22,12 +32,4 @@ html(lang="de")
         input(type='text', name='organisationbasedn', value='#{ORGANISATION_BASE_DN}')
      p Admin Email
         input(type='text', name='adminemail', value='#{ADMIN_EMAIL}')
-     input(type='submit', value='Update configuration')
- 
-    h2 Actions
-    form(name="start", action="/hooks/ee-start", method='get')
-     input(type='submit', value='Startup')
-    form(name="stop", action="/hooks/ee-stop", method='get')
-     input(type="submit", value="Shutdown")
-    form(name="reset", action="/hooks/ee-full-reset", method='get')
-     input(type="submit", value="!!! Full Reset !!!")
+     input(type='submit', value='Update .env configuration and REBOOT system')

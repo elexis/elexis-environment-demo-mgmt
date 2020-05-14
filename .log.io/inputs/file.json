@@ -1,0 +1,26 @@
+{
+    "messageServer": {
+        "host": "127.0.0.1",
+        "port": 6689
+    },
+    "inputs": [
+        {
+            "source": "server",
+            "stream": "syslog",
+            "config": {
+                "path": "/var/log/syslog"
+            }
+        },
+        {
+            "source": "docker",
+            "stream": "log",
+            "config": {
+                "path": "/var/lib/docker/containers/**/*.log",
+                "watcherOptions": {
+                    "ignored": "*.json",
+                    "depth": 99
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,9 @@
+DROP DATABASE IF EXISTS ee_elexis;
+DROP DATABASE IF EXISTS ee_bookstack;
+DROP DATABASE IF EXISTS ee_keycloak;
+DROP DATABASE IF EXISTS ee_nextcloud;
+
+DROP USER IF EXISTS ee_elexis;
+DROP USER IF EXISTS ee_bookstack;
+DROP USER IF EXISTS ee_keycloak;
+DROP USER IF EXISTS ee_nextcloud;

@@ -50,11 +50,11 @@ echo "Delete .env backup files<BR>"
 rm -f /opt/ee/elexis-environment/.env.*
 
 # TODO clear database
-echo "Dropping database tables<BR>"
-echo $(/usr/bin/mysql --defaults-extra-file=/opt/elexis-environment-demo-mgmt/mysql-secrets.cnf -u ee < ../sql/drop-database.sql)
-
-# Initialize Database
-
+echo "Dropping SQL databases and users<BR>"
+echo $(/usr/bin/mysql --defaults-extra-file=/opt/elexis-environment-demo-mgmt/mysql-secrets.cnf -u ee -H < /opt/elexis-environment-demo-mgmt/sql/drop-databases-and-users.sql)
+echo "Creating SQL databases and users<BR>"
+/opt/ee/elexis-environment/ee setup mysql_init_code > /tmp/ee_mysql_init.sql
+echo $(/usr/bin/mysql --defaults-extra-file=/opt/elexis-environment-demo-mgmt/mysql-secrets.cnf -u ee -H < /tmp/ee_mysql_init.sql)
 
 #
 # reboot system

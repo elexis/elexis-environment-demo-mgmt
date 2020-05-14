@@ -22,13 +22,13 @@ html(lang="de")
      
     h2 Reconfigure/Reset this instance
     form(name="hostname", action="/hooks/ee-reset-instance", method='post', autocomplete='off')
-     p Hostname 
+     p Hostname <i>(e.g. base.elexisdemo.ch)</i>
         input(type="text", name='hostname', value="#{EE_HOSTNAME}")
-     p Organisation
+     p Organisation <i>(Spaces via double underscore)</i>
         input(type='text', name='organisationname', value='#{ORGANISATION_NAME}')
-     p Organisation Domain
+     p Organisation Domain <i>(e.g. elexisdemo.ch)</i>
         input(type='text', name='organisationdomain', value='#{ORGANSATION_DOMAIN}')
-     p Organisation Base Dn
+     p Organisation Base Dn <i>(e.g. dc=elexisdemo,dc=ch)</i>
         input(type='text', name='organisationbasedn', value='#{ORGANISATION_BASE_DN}')
      p Admin Email
         input(type='text', name='adminemail', value='#{ADMIN_EMAIL}')

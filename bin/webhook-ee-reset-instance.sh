@@ -14,6 +14,12 @@ adminpass=$(uuid)
 echo "<B>ADMIN_PASSWORD is now [$adminpass]</B><BR>"
 sed -i "s/ADMIN_PASSWORD=.*/ADMIN_PASSWORD=$adminpass/g" $DOCKER_ENV
 
+IPADDR_DOCKER=$(ifdata -pa docker0)
+echo "RDBMS_HOST is [$IPADDR_DOCKER]</B><BR>"
+sed -i "s/RDBMS_HOST=.*/RDBMS_HOST=$IPADDR_DOCKER/g" $DOCKER_ENV
+echo "ADMIN_USERNAME is [ee_admin]</B><BR>"
+sed -i "s/ADMIN_USERNAME=.*/ADMIN_USERNAME=ee_admin/g" $DOCKER_ENV
+
 #
 # Adapt .env values
 #

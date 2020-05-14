@@ -1,10 +1,8 @@
-#!/bin/sh
-
-DOCKER_ENV=/opt/ee/elexis-environment/.env
-
-IPADDR_ETH=$(ifdata -pa eth0)
-sed -i "s/RDBMS_HOST=.*/RDBMS_HOST=$IPADDR_ETH/g" $DOCKER_ENV
-
-/opt/ee/elexis-environment/ee system cmd up -d --build
-
-echo "OK"
+#!/bin/bash
+echo "<HTML>"
+echo "Executing ....<br>" | ts '[%Y-%m-%d %H:%M:%S]'
+# tr replaces only single character
+RESULT=$(/opt/ee/elexis-environment/ee system cmd up -d --build | tr '\n' ',' )
+# now replace , with HTML BR
+echo ${RESULT//,/<BR>}
+echo "</HTML>"

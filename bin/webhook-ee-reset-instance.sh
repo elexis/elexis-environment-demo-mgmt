@@ -4,13 +4,13 @@
 DOCKER_ENV=/opt/ee/elexis-environment/.env
 
 echo "<HTML>"
-echo "Executing ...<BR>"
+echo "Executing ...<BR>" | ts '[%Y-%m-%d %H:%M:%S]'
 echo $(/opt/ee/elexis-environment/ee system cmd stop)
 
 #
 # Adapt .env values
 #
-echo "<B> Setting .env values<BR>"
+echo "Setting .env values<BR>"
 
 adminemail=$(echo $@ | jq -r '.adminemail')
 echo adminemail $adminemail "<br>"

@@ -7,6 +7,13 @@ echo "<HTML>"
 echo "Executing ...<BR>" | ts '[%Y-%m-%d %H:%M:%S]'
 echo $(/opt/ee/elexis-environment/ee system cmd stop)
 
+echo "Resetting $DOCKER_ENV <BR>"
+rm $DOCKER_ENV
+cp $DOCKER_ENV.template $DOCKER_ENV
+adminpass=$(uuid)
+echo "<B>ADMIN_PASSWORD is now [$adminpass]</B><BR>"
+sed -i "s/ADMIN_PASSWORD=.*/ADMIN_PASSWORD=$adminpass/g" $DOCKER_ENV
+
 #
 # Adapt .env values
 #
@@ -46,8 +53,9 @@ echo "Prune volumes and images<BR>"
 echo $(docker volume prune -f) "<BR>"
 echo $(docker image prune -f) "<BR>"
 
-echo "Delete .env backup files<BR>"
-rm -f /opt/ee/elexis-environment/.env.*
+echo "Delete .env.bkup.* backup files<BR>"
+rm -f /opt/ee/elexis-environment/.env.bkup
+rm -f /opt/ee/elexis-environment/.env.bkup.*
 
 # TODO clear database
 echo "Dropping SQL databases and users<BR>"
@@ -58,5 +66,10 @@ echo $(/usr/bin/mysql --defaults-extra-file=/opt/elexis-environment-demo-mgmt/my
 #
 # reboot system
 #
-echo "<B> Rebooting system ...<BR><HTML>"
-# sudo reboot
+echo "<B> Rebooting system ...</B><BR>" | ts '[%Y-%m-%d %H:%M:%S]'
+echo "After startup you should execute <I>Configure EE</I> in the main form<BR>"
+echo "You can check status and uptime in <I>EE status</I><BR>"
+echo "<HTML>"
+sudo reboot
+
+

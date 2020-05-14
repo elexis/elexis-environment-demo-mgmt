@@ -4,6 +4,13 @@
 DOCKER_ENV=/opt/ee/elexis-environment/.env
 
 echo "<HTML>"
+echo "Executing ...<BR>"
+echo $(/opt/ee/elexis-environment/ee system cmd stop)
+
+#
+# Adapt .env values
+#
+echo "<B> Setting .env values<BR>"
 
 adminemail=$(echo $@ | jq -r '.adminemail')
 echo adminemail $adminemail "<br>"
@@ -30,6 +37,27 @@ organisationname=$(echo $@ | jq -r '.organisationname')
 echo organisationname $organisationname "<br>"
 sed -i "s/ORGANISATION_NAME=.*/ORGANISATION_NAME=$organisationname/g" $DOCKER_ENV
 
-echo "Values set. System will reboot.<HTML>"
+#
+# Perform full reset
+#
+echo "Remove all containers<BR>"
+echo $(/opt/ee/elexis-environment/ee system cmd rm -f) "<BR>"
+echo "Prune volumes and images<BR>"
+echo $(docker volume prune -f) "<BR>"
+echo $(docker image prune -f) "<BR>"
 
-sudo reboot
+echo "Delete .env backup files<BR>"
+rm -f /opt/ee/elexis-environment/.env.*
+
+# TODO clear database
+echo "Dropping database tables<BR>"
+echo $(/usr/bin/mysql --defaults-extra-file=/opt/elexis-environment-demo-mgmt/mysql-secrets.cnf -u ee < ../sql/drop-database.sql)
+
+# Initialize Database
+
+
+#
+# reboot system
+#
+echo "<B> Rebooting system ...<BR><HTML>"
+# sudo reboot

@@ -6,4 +6,5 @@ echo "<B>Uptime</B>"  $(uptime) "<BR><BR>"
 RESULT=$(/opt/ee/elexis-environment/ee system cmd ps | tr '\n' ',' )
 # now replace , with HTML BR
 echo ${RESULT//,/<BR>}
+echo "DONE<br>" | ts '[%Y-%m-%d %H:%M:%S]'
 echo "</HTML>"

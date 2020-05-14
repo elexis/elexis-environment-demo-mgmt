@@ -7,7 +7,7 @@ CREATE USER elexis@'%' IDENTIFIED BY 'elexis';
 GRANT ALL PRIVILEGES ON ee_elexis.* TO 'elexis'@'%';
 
 CREATE DATABASE ee_bookstack;
-CREATE USER ee_bookstack@'%' BY 'ee_bookstack';
+CREATE USER ee_bookstack@'%' IDENTIFIED BY 'ee_bookstack';
 GRANT ALL PRIVILEGES ON ee_bookstack.* TO ee_bookstack@'%';
 
 CREATE DATABASE ee_keycloak CHARACTER SET utf8 COLLATE utf8_unicode_ci;

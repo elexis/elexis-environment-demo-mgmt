@@ -16,8 +16,8 @@ html(lang="de")
     form(name="setup", action="/hooks/ee-setup-configure", method='get', target='_blank')
      input(type='submit', value='Configure EE (ee setup configure)')
     form(name="start", action="/hooks/ee-start", method='get', target='_blank')
-     input(type='submit', value='Startup EE (ee system cmd up -d --build)', target='_blank')
-    form(name="stop", action="/hooks/ee-stop", method='get')
+     input(type='submit', value='Startup EE (ee system cmd up -d --build) CAN TAKE VERY LONG!!', target='_blank')
+    form(name="stop", action="/hooks/ee-stop", method='get', target='_blank')
      input(type="submit", value="Shutdown EE (ee system cmd stop)")
      
     h2 Reconfigure/Reset this instance

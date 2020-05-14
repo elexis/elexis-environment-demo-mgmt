@@ -14,9 +14,9 @@ adminpass=$(uuid)
 echo "<B>ADMIN_PASSWORD is now [$adminpass]</B><BR>"
 sed -i "s/ADMIN_PASSWORD=.*/ADMIN_PASSWORD=$adminpass/g" $DOCKER_ENV
 
-IPADDR_DOCKER=$(ifdata -pa docker0)
-echo "RDBMS_HOST is [$IPADDR_DOCKER]</B><BR>"
-sed -i "s/RDBMS_HOST=.*/RDBMS_HOST=$IPADDR_DOCKER/g" $DOCKER_ENV
+IPADDR_ETH=$(ifdata -pa eth0)
+echo "RDBMS_HOST is [$IPADDR_ETH]</B><BR>"
+sed -i "s/RDBMS_HOST=.*/RDBMS_HOST=$IPADDR_ETH/g" $DOCKER_ENV
 echo "ADMIN_USERNAME is [ee_admin]</B><BR>"
 sed -i "s/ADMIN_USERNAME=.*/ADMIN_USERNAME=ee_admin/g" $DOCKER_ENV
 
@@ -62,6 +62,10 @@ echo $(docker image prune -f) "<BR>"
 echo "Delete .env.bkup.* backup files<BR>"
 rm -f /opt/ee/elexis-environment/.env.bkup
 rm -f /opt/ee/elexis-environment/.env.bkup.*
+
+echo "Delete /opt/ee/elexis-environment/site/bootstrap.ldif<BR>"
+rm -f /opt/ee/elexis-environment/site/bootstrap.ldif
+rm -f /opt/ee/elexis-environment/site/dhparam.pem
 
 # TODO clear database
 echo "Dropping SQL databases and users<BR>"

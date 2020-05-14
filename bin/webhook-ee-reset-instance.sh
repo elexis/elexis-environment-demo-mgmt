@@ -67,9 +67,7 @@ echo $(/usr/bin/mysql --defaults-extra-file=/opt/elexis-environment-demo-mgmt/my
 # reboot system
 #
 echo "<B> Rebooting system ...</B><BR>" | ts '[%Y-%m-%d %H:%M:%S]'
-echo "After startup you should execute <I>Configure EE</I> in the main form<BR>"
-echo "You can check status and uptime in <I>EE status</I><BR>"
+echo "After startup you should execute <I>Configure EE</I> in the <A HREF="/hooks/form">main form</A><BR>"
+echo "You can also check status and uptime there in <I>EE status</I><BR>"
 echo "<HTML>"
-sudo reboot
-
-
+nohup ./reboot.sh >/dev/null 2>&1 & disown

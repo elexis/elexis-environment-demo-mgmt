@@ -10,17 +10,6 @@
             "config": {
                 "path": "/var/log/syslog"
             }
-        },
-        {
-            "source": "docker",
-            "stream": "log",
-            "config": {
-                "path": "/var/lib/docker/containers/**/*.log",
-                "watcherOptions": {
-                    "ignored": "*.json",
-                    "depth": 99
-                }
-            }
         }
     ]
 }

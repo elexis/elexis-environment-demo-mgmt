@@ -71,7 +71,7 @@ rm -f /opt/ee/elexis-environment/site/dhparam.pem
 echo "Dropping SQL databases and users<BR>"
 echo $(/usr/bin/mysql --defaults-extra-file=/opt/elexis-environment-demo-mgmt/mysql-secrets.cnf -u ee -H < /opt/elexis-environment-demo-mgmt/sql/drop-databases-and-users.sql)
 echo "Creating SQL databases and users<BR>"
-./ee setup mysql_init_code > /tmp/create-databases-and-users.sql
+/opt/ee/elexis-environment/ee setup mysql_init_code > /tmp/create-databases-and-users.sql
 echo $(/usr/bin/mysql --defaults-extra-file=/opt/elexis-environment-demo-mgmt/mysql-secrets.cnf -u ee -H < /tmp/create-databases-and-users.sql)
 
 #

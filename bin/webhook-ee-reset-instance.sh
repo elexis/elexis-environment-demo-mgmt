@@ -10,9 +10,10 @@ echo $(/opt/ee/elexis-environment/ee system cmd stop)
 echo "Resetting $DOCKER_ENV <BR>"
 rm $DOCKER_ENV
 cp $DOCKER_ENV.template $DOCKER_ENV
-adminpass=$(uuid)
-echo "<B>ADMIN_PASSWORD is now [$adminpass]</B><BR>"
-sed -i "s/ADMIN_PASSWORD=.*/ADMIN_PASSWORD=$adminpass/g" $DOCKER_ENV
+ADMIN_PASS_RAW=$(uuid)
+ADMIN_PASS=${ADMIN_PASS_RAW//[-]/}
+echo "<B>ADMIN_PASSWORD is now [$ADMIN_PASS]</B><BR>"
+sed -i "s/ADMIN_PASSWORD=.*/ADMIN_PASSWORD=$ADMIN_PASS/g" $DOCKER_ENV
 
 IPADDR_ETH=$(ifdata -pa eth0)
 echo "RDBMS_HOST is [$IPADDR_ETH]</B><BR>"
@@ -65,6 +66,7 @@ rm -f /opt/ee/elexis-environment/.env.bkup.*
 
 echo "Delete /opt/ee/elexis-environment/site/bootstrap.ldif<BR>"
 rm -f /opt/ee/elexis-environment/site/bootstrap.ldif
+echo "Delete /opt/ee/elexis-environment/site/dhparam.pem<BR>"
 rm -f /opt/ee/elexis-environment/site/dhparam.pem
 
 # TODO clear database

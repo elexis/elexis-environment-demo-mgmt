@@ -59,7 +59,7 @@ echo $(/opt/ee/elexis-environment/ee system cmd rm -f) "<BR>"
 echo "Prune volumes and images, system prune -a<BR>"
 echo $(docker volume prune -f) "<BR>"
 echo $(docker image prune -f) "<BR>"
-echo $(docker system prune -a) "<BR>"
+echo $(docker system prune -af) "<BR>"
 
 echo "Delete .env.bkup.* backup files<BR>"
 rm -f /opt/ee/elexis-environment/.env.bkup

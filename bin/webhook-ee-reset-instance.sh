@@ -18,8 +18,8 @@ sed -i "s/ADMIN_PASSWORD=.*/ADMIN_PASSWORD=$ADMIN_PASS/g" $DOCKER_ENV
 IPADDR_ETH=$(ifdata -pa eth0)
 echo "RDBMS_HOST is [$IPADDR_ETH]</B><BR>"
 sed -i "s/RDBMS_HOST=.*/RDBMS_HOST=$IPADDR_ETH/g" $DOCKER_ENV
-echo "ADMIN_USERNAME is [ee_admin]</B><BR>"
-sed -i "s/ADMIN_USERNAME=.*/ADMIN_USERNAME=ee_admin/g" $DOCKER_ENV
+echo "ADMIN_USERNAME is [eeadmin]</B><BR>"
+sed -i "s/ADMIN_USERNAME=.*/ADMIN_USERNAME=eeadmin/g" $DOCKER_ENV
 
 #
 # Adapt .env values
@@ -56,9 +56,10 @@ sed -i "s/ORGANISATION_NAME=.*/ORGANISATION_NAME=$organisationname/g" $DOCKER_EN
 #
 echo "Remove all containers<BR>"
 echo $(/opt/ee/elexis-environment/ee system cmd rm -f) "<BR>"
-echo "Prune volumes and images<BR>"
+echo "Prune volumes and images, system prune -a<BR>"
 echo $(docker volume prune -f) "<BR>"
 echo $(docker image prune -f) "<BR>"
+echo $(docker system prune -a) "<BR>"
 
 echo "Delete .env.bkup.* backup files<BR>"
 rm -f /opt/ee/elexis-environment/.env.bkup
